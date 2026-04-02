@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Angie</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Consolas, monospace;
+    background: linear-gradient(135deg, #1e1e2f, #3a3a6a);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    max-width: 600px;
+    text-align: center;
+}
+
+button {
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    background: #ff6b81;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #ff4757;
+}
+
+.hidden {
+    display: none;
+}
+
+#rosa {
+    white-space: pre;
+    font-size: 18px;
+    font-family: Consolas, monospace;
+    line-height: 1.1;
+    margin-top: 20px;
+
+    display: inline-block;
+    text-align: left;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="inicio">
+    <h1>Hoy un dia muy pero muy especialll jeje es tu dia Angie</h1>
+    <p>Y si... es muyyy especial ^^.</p>
+    <button onclick="siguiente('decision1')">Continuar</button>
+</div>
+
+<div id="decision1" class="hidden">
+    <p>Antes de seguir... escoge uno de estos dos:</p>
+    <button onclick="siguiente('opcion1')">La vas a pasar bien?</button>
+    <button onclick="siguiente('opcion2')">La vas a pasar bien de todos modos</button>
+</div>
+
+<div id="opcion1" class="hidden">
+    <p>Biennn. Esa era la idea. JSJJSJS</p>
+    <p>Aunque la verdad hoy tienes excusa para todo.</p>
+    <button onclick="siguiente('final')">Seguir</button>
+</div>
+
+<div id="opcion2" class="hidden">
+    <p>Respuesta correcta.(obviamente tu debes pasarla bienn)</p>
+    <p>Aun que no habian muchas opciones realmente...</p>
+    <button onclick="siguiente('final')">Seguir</button>
+</div>
+
+<div id="final" class="hidden">
+    <h2>Feliz cumpleaños, Angie ^^</h2>
+    <p>
+        Ojalá hoy te rías bastante, comas bien y te olvides un rato de todo lo malo y lo estresante.  
+        De verdad espero que este año te traiga cosas buenas y bonitas.  
+        Y bueno… me alegra que podamos llevarnos bien.
+    </p>
+
+    <button onclick="mostrarRosa()">Ah cierto... Una última cosita ^^</button>
+
+    <div id="rosa"></div>
+</div>
+
+</div>
+
+<script>
+function siguiente(id) {
+    document.querySelectorAll('.container > div').forEach(div => {
+        div.classList.add('hidden');
+    });
+    document.getElementById(id).classList.remove('hidden');
+}
+
+function mostrarRosa() {
+    const pasos = [
+`
+
+
+        |
+        |
+`,
+`
+
+        |
+      / |
+      |/
+        |
+`,
+`
+
+        |
+      / |
+      |/
+        |
+
+       \\|/
+        |
+`,
+`
+
+        |
+      / |
+      |/
+        |
+
+     \\  |  /
+      \\ | /
+       \\|/
+`,
+`
+        .=.
+     ' .   . '
+    '  .   .  '
+     '  . .  '
+        '|'
+
+     \\  |  /
+      \\ | /
+       \\|/
+
+        |
+      / |
+      |/
+        |
+`
+    ];
+
+    let i = 0;
+
+    function mostrarPaso() {
+        if (i < pasos.length) {
+            document.getElementById("rosa").textContent = pasos[i];
+            i++;
+            setTimeout(mostrarPaso, 600);
+        } else {
+            document.getElementById("rosa").textContent += "\n\nSin nada mas que decir.. feliz cumpleaños <3";
+        }
+    }
+
+    mostrarPaso();
+}
+</script>
+
+</body>
+</html>
